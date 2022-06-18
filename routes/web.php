@@ -3,7 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\EquiposController;
+use App\Http\Controllers\EquipoImagenController;
+
 use App\Http\Controllers\PersonasDBController;
+use App\Http\Controllers\EquipoDBController;
 
 
 /*
@@ -21,8 +24,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('persona', [PersonaController::class, 'index']);
+Route::get('persona', [PersonaController::class, 'index']); // muestra persona
 
-Route::get('equipos', [EquiposController::class, 'mostrar']);
+Route::get('equipos', [EquiposController::class, 'mostrar']);   //muestra equipo
 
-Route::post('guardar', [PersonasDBController::class, 'guardarPersona']);
+Route::get('equiposImagen', [EquipoImagenController::class, 'mostrarEquipoImagen']); //muestra equipo imagen
+
+Route::post('guardar', [PersonasDBController::class, 'guardarPersona']); //guarda persona
+
+Route::post('guardarEquipo', [EquipoDBController::class, 'guardarEquipo']); //guardar equipo
+
+Route::get('editEquipo{id}', [EquipoDBController::class, 'editEquipo']);
+
+Route::post('updateEquipo{id}', [EquipoDBController::class, 'updateEquipo']);
